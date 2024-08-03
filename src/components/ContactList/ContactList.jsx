@@ -1,7 +1,11 @@
+import { useSelector } from "react-redux";
 import Contact from "../Contact/Contact";
 import s from "./ContactList.module.css";
+import { selectContacts } from "../../redux/selectContacts";
 
-const ContactList = ({ contacts, deleteContact }) => {
+const ContactList = ({ deleteContact }) => {
+  const contacts = useSelector(selectContacts);
+
   return (
     <ul className={s.contactList}>
       {contacts.map((contact) => (
