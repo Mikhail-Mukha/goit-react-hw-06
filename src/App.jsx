@@ -1,45 +1,20 @@
 import ContactForm from "./components/ContactForm/ContactForm";
 import SearchBox from "./components/SearchBox/SearchBox";
 import ContactList from "./components/ContactList/ContactList";
-// import stateApp from "./stateApp.json";
-// import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { addContact } from "./redux/contactsSlice";
 
 const App = () => {
-  // const [contacts, setContacts] = useState(() => {
-  //   const savedData = JSON.parse(window.localStorage.getItem("contacts"));
-  //   return savedData || stateApp;
-  // });
+  const dispatch = useDispatch();
 
-  // const [filter, setFilter] = useState("");
-
-  // const changeFilter = (value) => {
-  //   setFilter(value);
-  // };
-
-  // const filteredContacts = contacts.filter(
-  //   (contact) =>
-  //     contact.name.toLowerCase().includes(filter.toLowerCase()) ||
-  //     contact.number.includes(filter)
-  // );
-
-  // const addContact = (contact) => {
-  //   setContacts((prevContacts) => [...prevContacts, contact]);
-  // };
-
-  // const deleteContact = (id) => {
-  //   setContacts((prevContacts) =>
-  //     prevContacts.filter((contact) => contact.id !== id)
-  //   );
-  // };
-
-  // useEffect(() => {
-  //   window.localStorage.setItem("contacts", JSON.stringify(contacts));
-  // }, [contacts]);
+  const handleAddContact = (contact) => {
+    dispatch(addContact(contact));
+  };
 
   return (
     <div>
       <h1>Phonebook</h1>
-      <ContactForm />
+      <ContactForm addContact={handleAddContact} />
       <SearchBox />
       <ContactList />
     </div>
